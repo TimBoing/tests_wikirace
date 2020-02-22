@@ -1,6 +1,11 @@
-class PagesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:home]
+require 'open-uri'
+require 'nokogiri'
 
-  def home
+
+class PagesController < ApplicationController
+
+  def index
+    @url = "https://fr.wikipedia.org/wiki/wagon"
+    @html_doc = Nokogiri::HTML(open(@url), nil, 'utf-8')
   end
 end
